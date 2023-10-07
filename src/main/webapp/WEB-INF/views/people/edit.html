@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update person</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+
+  <label for="reason">Enter reason for absence</label>
+  <select id="reason" th:field="*{reason}" >
+    <option value="Vacation">Vacation</option>
+    <option value="Medical">Medical</option>
+    <option value="Absence">Absence</option>
+  </select>
+
+  <div style="color:red" th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">reason error</div>
+  <br/>
+  <label for="startDate">Enter start date:</label>
+  <input type="date" th:field="*{startDate}" id="startDate"/>
+  <div style="color:red" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">startDate error</div>
+  <br/>
+  <label for="duration">Enter duration</label>
+  <input type="text" th:field="*{duration}" id="duration"/>
+  <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">duration error</div>
+  <br/>
+  <label for="discounted">Check discounted</label>
+  <input type="checkbox" th:field="*{discounted}" id="discounted"/>
+  <div style="color:red" th:if="${#fields.hasErrors('discounted')}" th:errors="*{discounted}">discounted error</div>
+  <br/>
+  <label for="description">Enter description</label>
+  <input type="text" th:field="*{description}" id="description"/>
+  <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</div>
+  <br/>
+  <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>
